@@ -3,7 +3,7 @@
 # Dalia Abdelghani
 # Noor Alomari
 # Walaa Alomari
-# Abed alaziz Alsalahat
+# Abed alaziz Alsalahat (Team Leader)
 # Naji A. Albatayneh
 
 ## Conflict Plan
