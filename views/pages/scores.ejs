@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../layout/head.ejs')%>
+</head>
+
+<body>
+    <header>
+        <%- include('../../layout/header.ejs')%>
+    </header>
+    <main>
+        <section>
+            <table>
+                <th>
+                    <td>#</td>
+                    <td>Difficulty Level</td>
+                    <td>Score</td>
+                    <td>Time</td>
+                </th>
+                <% scores.forEach(score => {%>
+                    <tr>
+                        <td></td>
+                        <td><%= difficulty%></td>
+                        <td><%= score%></td>
+                        <td><%= time%></td>
+                    </tr>
+                    <%})%>
+
+            </table>
+        </section>
+    </main>
+</body>
+
+</html>
