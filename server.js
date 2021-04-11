@@ -68,7 +68,7 @@ app.get('/', renderHomePage);
 app.post('/quiz', handleQuiz);
 
 // //
-app.get('/quiz', handleStart);
+// app.get('/quiz', handleStart);
 
 // app.post('/', handle);
 
@@ -118,17 +118,15 @@ function renderHomePage(req, res) {
 function handleQuiz (req,res){
     console.log(req.body);
     const userName = req.body.name;
-    // const { title, author, isbn, image, description, bookshelf } = req.body;
-    const sqlQuery = 'INSERT INTO users (name) VALUES($1) RETURNING id;';
-    const safeValues = [name];
-    res.redirect('pages/quiz-page.ejs');
+    const insertName= 'INSERT INTO users (name) VALUES($1) RETURNING id;';
+    client.query(insertName).then(results=>{ res.redirect('pages/quiz-page.ejs');});
     // res.send(req.body);
 }
 
-function handleStart (req,res){
-    console.log('from form', req.body);
-    res.render('pages/quiz-page.ejs');
-}
+// function handleStart (req,res){
+//     console.log('from form', req.body);
+//     res.render('pages/quiz-page.ejs');
+// }
 
 //#endregion
 
