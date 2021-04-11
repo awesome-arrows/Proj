@@ -98,9 +98,4 @@ no.
 
 ![ER Diagram](./public/views/imgs/ER_Diagram.png)
 
-# Requirments
-
-## functrional Requirments
-
-## non-functrional Requirments
 
