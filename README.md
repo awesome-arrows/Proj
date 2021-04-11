@@ -1,12 +1,12 @@
 # Awesome-Arrows.
 
-# Dalia Abdelghani
-# Noor Alomari
-# Walaa Alomari
-# Abed alaziz Alsalahat
-# Naji A. Albatayneh
+## Dalia Abdelghani
+## Noor Alomari
+## Walaa Alomari
+## Abed alaziz Alsalahat
+## Naji A. Albatayneh
 
-## Conflict Plan
+# Conflict Plan
 for the confluct plan we will be using the **Collaborating** approach for the most important situations, 
 it offers a good oppertrunity to learn from others,
 > **Treats conflicts as a problem to be solved by examining alternatives**
@@ -25,7 +25,7 @@ it offers a good oppertrunity to learn from others,
 > in casae the conflict was that hard id unsolvable, I'll send them ASAP.
 
 
-## Work Plan
+# Work Plan
 
 #### How will you communicate after hours and on the weekend?
 > for communications , I've created a private channel on slack with all of us to talk on, 
@@ -42,7 +42,7 @@ it offers a good oppertrunity to learn from others,
 I'll do my best to make the environment as freindly as possible.
 
 
-## Git Process
+# Git Process
 
 #### What components of your project will live on GitHub?
 > public file, server.js file, README file, license file.
@@ -58,3 +58,35 @@ I'll do my best to make the environment as freindly as possible.
 
 #### Will you be using a PR review workflow? If so, consider:
 no.
+
+
+# User story:
+- *As a user,* I want to test my information and refresh my memory so I can enhance my knowledge in a funny way.
+
+- *As a user,* I want to choose the quiz’s difficulty so I know how much information I have.
+
+- *As a user,* after I take the quiz I want to see my score so I can know my level.
+
+- *As a user,* I want to see the top scores of other people who takes the quizzes.
+
+- *As a user,* I want to choose if I want to share my result with others.
+
+- *As a user,* I want a simple, clean looking UI so that my application is easy to navigate.
+
+- **Stretch goal:**  As a user, I want to save my name and choose to the website so I can. 
+
+- **Stretch goal:**  As a user, I want to choose the category of information I want to test.
+
+- **Stretch goal:**  As a use, I want to get a success response with a celebration if I answered all the questions correctly.
+
+
+# Wireframe
+
+![Wireframe](public/views/imgs/WireFrame.png)
+
+# Data flow Diagram (DFD)
+
+
+# ER Diagram
+
+![ER Diagram]()
