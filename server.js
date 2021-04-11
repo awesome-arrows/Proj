@@ -2,18 +2,19 @@
 
 
 //#region  Dependencies
+require('dotenv').config();
+
 const express = require('express');
 
-require('dotenv').config();
 
 const pg = require('pg');
 
 const cors = require('cors');
 
 const superagent = require('superagent');
-
+const DATABASE_URL = process.env.DATABASE_URL;
 const override = require('method-override');
-
+const client = new pg.Client(DATABASE_URL);
 //#endregion
 
 
@@ -57,15 +58,18 @@ app.set('view engine', 'ejs');
 //#region Routes
 
 // home Page Route
-// app.get('/', handle);
+app.get('/', renderHomePage);
+
 
 // //
-// app.get('/', handle);
+
 
 // //
-// app.post('/', handle);
+app.post('/quiz', handleQuiz);
 
 // //
+app.get('/quiz', handleStart);
+
 // app.post('/', handle);
 
 // //
@@ -85,10 +89,15 @@ app.get('*', handleError);
 
 //#endregion
 
-
-app.listen(PORT, ()=>{
-    console.log(`the app is listening to => ${PORT}`);
+client.connect().then(() => {
+    app.listen(PORT, () => {
+        console.log('Connected to database:', client.connectionParameters.database); //show what database we connected to
+        console.log(`Listening to Port ${PORT}`); //start point for the application"initialisation"
+    });
 });
+// app.listen(PORT, () => {
+//     console.log(`the app is listening to => ${PORT}`);
+// });
 
 //#region Constructors Area
 
@@ -100,18 +109,34 @@ app.listen(PORT, ()=>{
 
 
 //#region Functions/Handlers Area
+function renderHomePage(req, res) {
+    console.log('homepage is rendering');
+    res.render('pages/index.ejs');
+}
 
 
+function handleQuiz (req,res){
+    console.log(req.body);
+    const userName = req.body.name;
+    // const { title, author, isbn, image, description, bookshelf } = req.body;
+    const sqlQuery = 'INSERT INTO users (name) VALUES($1) RETURNING id;';
+    const safeValues = [name];
+    res.redirect('pages/quiz-page.ejs');
+    // res.send(req.body);
+}
 
-
+function handleStart (req,res){
+    console.log('from form', req.body);
+    res.render('pages/quiz-page.ejs');
+}
 
 //#endregion
 
 
 //#region Error Handler
 
-function handleError(error, res){
-    res.render('pages/error',{status:404, message:`Sorry something went wrong => ${error}`});
+function handleError(error, res) {
+    res.render('pages/error', { status: 404, message: `Sorry something went wrong => ${error}` });
 }
 
 //#endregion
