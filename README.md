@@ -82,11 +82,25 @@ no.
 
 # Wireframe
 
-![Wireframe](public/views/imgs/WireFrame.png)
+## Home Page
+![HomePage](./public/views/imgs/Home_Page.png)
+## Questions Page
+![Questions](./public/views/imgs/Questions_Page.png)
+## Scores and About Page
+![Scores_and_About_us](./public/views/imgs/Scores_and_About_us.png)
+
 
 # Data flow Diagram (DFD)
 
+![Data flow Diagram DFD](./public/views/imgs/WRRC.png)
 
 # ER Diagram
 
-![ER Diagram]()
+![ER Diagram](./public/views/imgs/ER_Diagram.png)
+
+# Requirments
+
+## functrional Requirments
+
+## non-functrional Requirments
+
