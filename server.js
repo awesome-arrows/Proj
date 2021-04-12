@@ -19,7 +19,7 @@ const client = new pg.Client(DATABASE_URL);
 
 
 //#region Variables Area
-
+let difficultySelect;
 
 //#endregion
 
@@ -68,7 +68,7 @@ app.get('/', renderHomePage);
 app.post('/quiz', handleQuiz);
 
 // //
-// app.get('/quiz', handleStart);
+app.get('/quiz', handleStart);
 
 // app.post('/', handle);
 
@@ -91,10 +91,12 @@ app.get('*', handleError);
 
 client.connect().then(() => {
     app.listen(PORT, () => {
-        console.log('Connected to database:', client.connectionParameters.database); //show what database we connected to
+        console.log('Connected to database:'); //show what database we connected to
         console.log(`Listening to Port ${PORT}`); //start point for the application"initialisation"
     });
 });
+
+client.on('error', error => console.error(error));
 // app.listen(PORT, () => {
 //     console.log(`the app is listening to => ${PORT}`);
 // });
@@ -117,16 +119,21 @@ function renderHomePage(req, res) {
 
 function handleQuiz (req,res){
     console.log(req.body);
-    const userName = req.body.name;
+    const userName = [req.body.name];
+    const difficulty=req.body.difficulty;
     const insertName= 'INSERT INTO users (name) VALUES($1) RETURNING id;';
-    client.query(insertName).then(results=>{ res.redirect('pages/quiz-page.ejs');});
+    client.query(insertName,userName).then(results=>{ res.redirect('/quiz');
+        console.log('select * from users ;');})
+        .catch(error =>handleError(error,res));
+
+
     // res.send(req.body);
 }
 
-// function handleStart (req,res){
-//     console.log('from form', req.body);
-//     res.render('pages/quiz-page.ejs');
-// }
+function handleStart (req,res){
+    console.log('from form', req.body);
+    res.render('pages/quiz-page.ejs');
+}
 
 //#endregion
 
@@ -134,7 +141,7 @@ function handleQuiz (req,res){
 //#region Error Handler
 
 function handleError(error, res) {
-    res.render('pages/error', { status: 404, message: `Sorry something went wrong => ${error}` });
+    res.send({ status: 404, message: `Sorry something went wrong => ${error}` });
 }
 
 //#endregion
