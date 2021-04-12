@@ -2,36 +2,14 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuiZzie</title>
+    <%- include('../layout/head')%>
 </head>
 
 <body>
 
     <header>
 
-        <h2>QuiZzie</h2>
-
-        <div id="header">
-
-            <div class="top">
-
-                <!-- Logo -->
-                <div id="logo">
-
-                </div>
-
-                <!-- Nav -->
-                <nav id="nav">
-                    <ul>
-
-                    </ul>
-                </nav>
-
-            </div>
-
+        <%- include('../layout/header')%>
     </header>
     <main>
         <div class="bannar">
@@ -58,13 +36,14 @@
                         </div>
                         <div class="">
                             <select name="difficulty">
-                                <option value="easy">Easy</option>
-                                <option value="medium">Medium</option>
-                                <option value="hard">Hard</option>
+                                <option > select ...</option>
+                                <option id="s1" value="easy">Easy</option>
+                                <option id="s2" value="medium">Medium</option>
+                                <option id="s3" value="hard">Hard</option>
                             </select>
                         </div>
 
-                        <div class="col-12">
+                        <div class="">
                             <input type="submit" value="Start" />
                         </div>
                     </div>
@@ -73,9 +52,7 @@
             </div>
         </section>
     </main>
-    <footer>
-
-    </footer>
+    <%- include('../layout/footer') %>
 </body>
 
 </html>
