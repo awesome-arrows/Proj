@@ -11,16 +11,21 @@ const pg = require('pg');
 const cors = require('cors');
 
 const superagent = require('superagent');
-const DATABASE_URL = process.env.DATABASE_URL;
+
 const override = require('method-override');
-const client = new pg.Client(DATABASE_URL);
+
 //#endregion
 
 
 //#region Variables Area
+
 let diff_string;
+
 let diff_int;
 
+const Q_number = 5;
+
+let Q_counter = 0;
 
 //#endregion
 
@@ -30,18 +35,14 @@ let app = express();
 
 const PORT = process.env.PORT || 3005;
 
-// const DATABASE_URL = process.env.DATABASE_URL;
+const DATABASE_URL = process.env.DATABASE_URL;
 
-// const user = new pg.Client(DATABASE_URL);
+const client = new pg.Client(DATABASE_URL);
 
 //#endregion
 
 
 //#region Middlewares
-
-// user.connect();
-
-// user.on('error', error => console.error(error));
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -61,16 +62,13 @@ app.set('view engine', 'ejs');
 // home Page Route
 app.get('/', renderHomePage);
 
-
-// //
-
-
-// //
+// gitting data from the home to the quiz page route
 app.post('/quiz', handleQuiz);
 
-// //
+// quiz page Route
 app.get('/quiz', handleStart);
 
+//
 // app.post('/', handle);
 
 // //
@@ -90,6 +88,9 @@ app.get('*', handleError);
 
 //#endregion
 
+
+//#region client connection check
+
 client.connect().then(() => {
     app.listen(PORT, () => {
         console.log('Connected to database:'); //show what database we connected to
@@ -98,37 +99,30 @@ client.connect().then(() => {
 });
 
 client.on('error', error => console.error(error));
-// app.listen(PORT, () => {
-//     console.log(`the app is listening to => ${PORT}`);
-// });
+
+//#endregion
+
 
 //#region Constructors Area
 
 function Question(data){
-    this.question= data.question;
-    this.correct_answer= data.correct_answer;
-    this.incorrect_answers=data.incorrect_answers;
-    this.difficulty=data.difficulty;
+    this.question = data.question;
+    this.correct_answer = data.correct_answer;
+    this.incorrect_answers = data.incorrect_answers;
+    this.difficulty = data.difficulty;
 }
-
-
 
 //#endregion
 
 
 //#region Functions/Handlers Area
 function renderHomePage(req, res) {
-    console.log('homepage is rendering');
     res.render('pages/index');
 }
 
-
 function handleQuiz (req,res){
-    // console.log(req.body);
     const userName = req.body.name;
-    diff_string=req.body.difficulty;
-    
-    console.log(diff_string);
+    diff_string = req.body.difficulty;
     if (diff_string === 'easy') {
         diff_int = 1;
     } else if (diff_string === 'medium'){
@@ -137,26 +131,44 @@ function handleQuiz (req,res){
         diff_int = 3;
     }
     const values = [userName];
-    const insertName= 'INSERT INTO users (name) VALUES($1) RETURNING id ;';
-    client.query(insertName,values).then(results=>{ res.redirect('/quiz');})
-    .catch(error =>handleError(error,res));
+    const insertName= 'INSERT INTO users (name) VALUES($1) RETURNING id;';
+    client.query(insertName,values).then(results => {res.redirect('/quiz');})
+        .catch(error =>handleError(error,res));
 }
 
 function handleStart (req,res){
     // const diff = req.params.difficulty;
-    console.log('I am start');
     // const selectDiff= `select difficulty  from quiz_difficulty  where id = ${diff};`;
-
     // console.log(selectDiff);
-    const url = `https://opentdb.com/api.php?amount=15&category=9&difficulty=${diff_string}&type=multiple`;
+    const url = `https://opentdb.com/api.php?amount=${Q_number}&category=9&difficulty=${diff_string}&type=multiple`;
     superagent.get(url)
-        .then(quiz =>{
+        .then(quiz => {
             console.log(quiz.body.results);
             let arr = quiz.body.results.map(ques => new Question(ques));
-            res.render('pages/quiz-page',{data : arr});
+            let full_arr = [arr.correct_answer, arr.incorrect_answers];
+            let flated_arr= full_arr.flat();
+            let shuffiled_arr = shuffle(flated_arr);
+            console.log(arr[0].question);
+            res.render('pages/quiz-page',{data : shuffiled_arr, quest : arr[0].question});
         })
         .catch(error =>handleError(error,res));
 }
+
+function shuffle(arr) {
+    let item = arr.length, temp, index;
+    while (item > 0) {
+        index = Math.floor(Math.random() * item) ;
+        item--;
+        temp = arr[item];
+        arr[item] = arr[index];
+        arr[index] = temp;
+    }
+    return arr;
+}
+
+
+
+
 
 //#endregion
 
