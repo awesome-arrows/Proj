@@ -74,7 +74,7 @@ app.get('/quiz', handleStart);
 // app.post('/', handle);
 
 // //
-// app.get('//:id', handle);
+app.get('/about', handleAbout);
 
 // // Update Route
 // app.put('//:', handleUpdate);
@@ -122,6 +122,9 @@ function renderHomePage(req, res) {
     res.render('pages/index');
 }
 
+function handleAbout(req,res){
+    res.render('pages/about');
+}
 
 function handleQuiz (req,res){
     // console.log(req.body);
