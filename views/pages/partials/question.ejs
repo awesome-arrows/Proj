@@ -1,12 +1,10 @@
 <div class="container">
     <div class="jumbotron text-center">
-        <h1>General Knowledge Quiz</h1>
-        <h3 id="question"><%= question.question %></h3>
         <div class="list">
-            <div class="questions" id="q1"><%= question.correct_answer %></div>
-            <div class="questions" id="q2"><%= question.incorrect_answers[0] %></div>
-            <div class="questions" id="q3"><%= question.incorrect_answers[1] %></div>
-            <div class="questions" id="q4"><%= question.incorrect_answers[2] %></div>
+            <div class="questions" id="q1"><%= choice[0] %></div>
+            <div class="questions" id="q2"><%= choice[1] %></div>
+            <div class="questions" id="q3"><%= choice[2] %></div>
+            <div class="questions" id="q4"><%= choice[3] %></div>
         </div>
     </div>
-  </div>
+</div>
