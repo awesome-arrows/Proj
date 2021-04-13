@@ -1,7 +1,7 @@
 'use stirct';
 
-
 //#region  Dependencies
+
 require('dotenv').config();
 
 const express = require('express');
@@ -25,12 +25,13 @@ let diff_int;
 
 const Q_number = 5;
 
-let Q_counter = 0;
+//let Q_counter = 0;
 
 //#endregion
 
 
 //#region  Setup
+
 let app = express();
 
 const PORT = process.env.PORT || 3005;
@@ -62,16 +63,19 @@ app.set('view engine', 'ejs');
 // home Page Route
 app.get('/', renderHomePage);
 
-// gitting data from the home to the quiz page route
+// from home to quiz page Route
 app.post('/quiz', handleQuiz);
 
 // quiz page Route
 app.get('/quiz', handleStart);
 
-//
-// app.post('/', handle);
+// result partial Route
+app.get('/result', handleResult);
 
-// //
+// Top scores Route
+app.get('/scores', handleTopScores);
+
+// // about us Route
 app.get('/about', handleAbout);
 
 // // Update Route
@@ -79,9 +83,6 @@ app.get('/about', handleAbout);
 
 // // Posting Update Route
 // app.post('//:', handleUpdate);
-
-// // delettion Route
-// app.delete('//:', handleDelete);
 
 // Route not found
 app.get('*', handleError);
@@ -169,21 +170,22 @@ function handleStart (req,res){
         .catch(error =>handleError(error,res));
 }
 
-// function shuffle(arr) {
-//     let item = arr.length, temp, index;
-//     while (item > 0) {
-//         index = Math.floor(Math.random() * item) ;
-//         item--;
-//         temp = arr[item];
-//         arr[item] = arr[index];
-//         arr[index] = temp;
-//     }
-//     return arr;
-// }
+function handleResult (req, res){
+    res.render('pages/partials/result');
+}
 
-
-
-
+// fixed difficulty id __ back to it later.
+function handleTopScores(req, res){
+    const sql = `SELECT score, time, name, difficulty FROM users 
+                JOIN quiz_Result 
+                ON user_id = users.id  
+                JOIN quiz_Difficulty 
+                ON difficulty_id = quiz_Difficulty.id  
+                WHERE quiz_Difficulty.id = ${diff_int};`;
+    return client.query(sql)
+        .then(results => res.render('pages/scores', {scores: results.rows}))
+        .catch((error) => handleError(error, res));
+}
 
 //#endregion
 
