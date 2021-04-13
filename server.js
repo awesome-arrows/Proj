@@ -71,8 +71,8 @@ app.get('/quiz', handleStart);
 //
 // app.post('/', handle);
 
-// //
-// app.get('//:id', handle);
+// Top scores Route
+app.get('/scores/:id', handleTopScores);
 
 // // Update Route
 // app.put('//:', handleUpdate);
@@ -145,7 +145,7 @@ function handleStart (req,res){
         .then(quiz => {
             console.log(quiz.body.results);
             let arr = quiz.body.results.map(ques => new Question(ques));
-            let full_arr = [arr.correct_answer, arr.incorrect_answers];
+            let full_arr = [arr.correct_answer, arr.incorrect_answers[0], arr.incorrect_answers[1], arr.incorrect_answers[2]];
             let flated_arr= full_arr.flat();
             let shuffiled_arr = shuffle(flated_arr);
             console.log(arr[0].question);
@@ -166,7 +166,9 @@ function shuffle(arr) {
     return arr;
 }
 
+function handleTopScores(){
 
+}
 
 
 
