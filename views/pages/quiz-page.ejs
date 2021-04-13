@@ -10,15 +10,14 @@
     </header>
     <main>
         <h1>General Knowledge Quiz</h1>
-        <div class="game-info-container">
-            <div class="game-info">
-              Time <span id="time-remaining">0</span>
+        <div class="quiz-container">
+            <div class="quiz-info">
+              Time <span id="timer">0</span>
             </div>
       </div>
-        <% data.forEach(question => { %>
-            <h3 id="question"><%- question.question %></h3>
-                <%- include('./partials/question', {choice: question.full_arr} ) %>
-        <% }) %>
+
+                <%- include('./partials/question', {choice: data} ) %>
+
         <%- include('./partials/result' ) %>
     </main>
     <footer>
