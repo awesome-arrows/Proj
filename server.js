@@ -72,7 +72,7 @@ app.get('/quiz', handleStart);
 // app.post('/', handle);
 
 // //
-// app.get('//:id', handle);
+app.get('/about', handleAbout);
 
 // // Update Route
 // app.put('//:', handleUpdate);
@@ -118,6 +118,10 @@ function Question(data){
 //#region Functions/Handlers Area
 function renderHomePage(req, res) {
     res.render('pages/index');
+}
+
+function handleAbout(req,res){
+    res.render('pages/about');
 }
 
 function handleQuiz (req,res){
