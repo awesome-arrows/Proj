@@ -1,0 +1,111 @@
+*{box-sizing: border-box;}
+ img{width: 100%;
+height: 350px;}
+
+main{background-color: #c9e0e7;}
+.intro p { 
+text-emphasis: center;
+    /* text-indent: 20px; */
+
+}
+
+.intro{ 
+    margin-top: 2%;
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+.intro p {
+
+    font-family: 'Courgette', cursive;
+    color: #1623dd;
+font-size: x-large;
+}
+
+/* Style inputs, select elements and textareas */
+
+input, select {
+    width: 90%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+    margin: 20px;
+    box-shadow: 5px 10px 8px #888888;
+  }
+
+  
+  /* Style the label to display next to the inputs */
+  label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+  }
+  
+  /* Style the submit button */
+
+   input[type=submit] {
+    background-color: #F2388F;
+    color: white;
+    /* padding: 12px 20px; */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+   align-items: center;
+    margin: 20px;
+    height: 50px;
+  } 
+   
+
+
+  input[type=submit] {
+    padding: 15px 25px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    border: none;
+  }
+  
+  input[type=submit]:hover {background-color: #f1e208}
+  
+  input[type=submit]:active {
+    background-color: #819c06;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+  /* Style the container */
+  .form {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    width: 50%;
+    margin: auto;
+  }
+  
+
+  /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+  /* @media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
+  } */
+
+
+
+   .footer {
+        background-color: #F1F1F1;
+        color:#1e14bf;
+        text-align: center;
+        padding: 40px;
+        height: 100px;
+        margin-top:3%;
+        font-size: large;
+        font-weight: 600;
+      }
+/* .footer p {
+    color:#1e14bf;
+    margin-top: 1%;
+    text-shadow: #666;
+} */

@@ -72,7 +72,10 @@ app.get('/quiz', handleStart);
 // app.post('/', handle);
 
 // Top scores Route
-app.get('/scores/:id', handleTopScores);
+app.get('/scores', handleTopScores);
+
+// //
+app.get('/about', handleAbout);
 
 // // Update Route
 // app.put('//:', handleUpdate);
@@ -110,6 +113,7 @@ function Question(data){
     this.correct_answer = data.correct_answer;
     this.incorrect_answers = data.incorrect_answers;
     this.difficulty = data.difficulty;
+    this.full_arr = [this.incorrect_answers];
 }
 
 //#endregion
@@ -118,6 +122,10 @@ function Question(data){
 //#region Functions/Handlers Area
 function renderHomePage(req, res) {
     res.render('pages/index');
+}
+
+function handleAbout(req,res){
+    res.render('pages/about');
 }
 
 function handleQuiz (req,res){
@@ -147,6 +155,8 @@ function handleStart (req,res){
             let arr = quiz.body.results.map(ques => new Question(ques));
             let full_arr = [arr.correct_answer, arr.incorrect_answers[0], arr.incorrect_answers[1], arr.incorrect_answers[2]];
             let flated_arr= full_arr.flat();
+            console.log(full_arr);
+            console.log(flated_arr);
             let shuffiled_arr = shuffle(flated_arr);
             console.log(arr[0].question);
             res.render('pages/quiz-page',{data : shuffiled_arr, quest : arr[0].question});
@@ -166,11 +176,18 @@ function shuffle(arr) {
     return arr;
 }
 
-function handleTopScores(){
-
+// fixed difficulty id __ back to it later.
+function handleTopScores(req, res){
+    const sql = `SELECT score, time, name, difficulty FROM users 
+                JOIN quiz_Result 
+                ON user_id = users.id  
+                JOIN quiz_Difficulty 
+                ON difficulty_id = quiz_Difficulty.id  
+                WHERE quiz_Difficulty.id = ${diff_int};`;
+    return client.query(sql)
+        .then(results => res.render('pages/scores', {scores: results.rows}))
+        .catch((error) => handleError(error, res));
 }
-
-
 
 //#endregion
 
