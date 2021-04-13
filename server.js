@@ -138,13 +138,11 @@ function handleQuiz (req,res){
         diff_int = 3;
     }
     const sql = 'SELECT name FROM users WHERE name = $1 ;';
-    // const sql2 = 'SELECT name FROM users WHERE name = $1 ;';
     const values = [userName];
     client.query(sql,values).then(result => {
         if (result.rows.length===0){
             const insertName= 'INSERT INTO users (name) VALUES($1) RETURNING id;';
             client.query(insertName,values).then(results => {
-                // console.log('my id'+results.rows[0].id);
                 const val = [results.rows[0].id, diff_int , 0 , 0 ];
                 const sql2 = 'INSERT INTO quiz_Result (User_id, difficulty_id, score, time) VALUES ($1, $2 , $3 ,$4)';
                 client.query(sql2,val);
