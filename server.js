@@ -110,6 +110,8 @@ function Question(data){
     this.correct_answer = data.correct_answer;
     this.incorrect_answers = data.incorrect_answers;
     this.difficulty = data.difficulty;
+    this.full_arr= this.incorrect_answers;
+    this.full_arr.push(this.correct_answer);
 }
 
 //#endregion
@@ -134,41 +136,50 @@ function handleQuiz (req,res){
     } else if (diff_string === 'hard'){
         diff_int = 3;
     }
+    const sql = 'SELECT name FROM users WHERE name = $1 ;';
+    // const sql2 = 'SELECT name FROM users WHERE name = $1 ;';
     const values = [userName];
-    const insertName= 'INSERT INTO users (name) VALUES($1) RETURNING id;';
-    client.query(insertName,values).then(results => {res.redirect('/quiz');})
-        .catch(error =>handleError(error,res));
+    client.query(sql,values).then(result => {
+        if (result.rows.length===0){
+            const insertName= 'INSERT INTO users (name) VALUES($1) RETURNING id;';
+            client.query(insertName,values).then(results => {
+                // console.log('my id'+results.rows[0].id);
+                const val = [results.rows[0].id, diff_int , 0 , 0 ];
+                const sql2 = 'INSERT INTO quiz_Result (User_id, difficulty_id, score, time) VALUES ($1, $2 , $3 ,$4)';
+                client.query(sql2,val);
+            });
+            res.redirect('/quiz').catch(error =>handleError(error,res));
+        }else{
+            // const sql = `SELECT difficulty_id FROM quiz_Result WHERE User_id = ${result.rows[0].id} ;`;
+            res.redirect('/quiz')
+                .catch(error =>handleError(error,res));
+
+        }
+    });
 }
 
 function handleStart (req,res){
-    // const diff = req.params.difficulty;
-    // const selectDiff= `select difficulty  from quiz_difficulty  where id = ${diff};`;
-    // console.log(selectDiff);
     const url = `https://opentdb.com/api.php?amount=${Q_number}&category=9&difficulty=${diff_string}&type=multiple`;
     superagent.get(url)
         .then(quiz => {
-            console.log(quiz.body.results);
             let arr = quiz.body.results.map(ques => new Question(ques));
-            let full_arr = [arr.correct_answer, arr.incorrect_answers];
-            let flated_arr= full_arr.flat();
-            let shuffiled_arr = shuffle(flated_arr);
-            console.log(arr[0].question);
-            res.render('pages/quiz-page',{data : shuffiled_arr, quest : arr[0].question});
+            console.log(arr);
+            res.render('pages/quiz-page',{data : arr});
         })
         .catch(error =>handleError(error,res));
 }
 
-function shuffle(arr) {
-    let item = arr.length, temp, index;
-    while (item > 0) {
-        index = Math.floor(Math.random() * item) ;
-        item--;
-        temp = arr[item];
-        arr[item] = arr[index];
-        arr[index] = temp;
-    }
-    return arr;
-}
+// function shuffle(arr) {
+//     let item = arr.length, temp, index;
+//     while (item > 0) {
+//         index = Math.floor(Math.random() * item) ;
+//         item--;
+//         temp = arr[item];
+//         arr[item] = arr[index];
+//         arr[index] = temp;
+//     }
+//     return arr;
+// }
 
 
 
