@@ -1,10 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <link rel="stylesheet" href="/style/reset.css" />
+        <link rel="stylesheet" href="/style/modules.css" />
+        <!-- <%- include('../layout/head')%> -->
+</head>
 
 <body>
-    
-<main>
-<h2 class="header">Meet our lovely teem: </h2>
+    <header>
+        <%- include('../layout/header')%>
+    </header>
+<main >
+<h2 class="text">Meet our lovely teem: </h2>
+
+<section class="flex">
 <div class="block">
-    <img class="imge" src="../imgs/noor-pic.jpg" >
+    <img class="imge" src="../imgs/pic-noor.jpg" >
     <p class="para">
         Noor-Al-Omari 
     </p>
@@ -36,18 +48,10 @@
        
     </div>
 </div>
-
-<div class="block">
-    <img class="imge" src="#" >
-    <p class="para">
-        Naji A. Albatayneh
-    </p>
-    <div class="icon">
-        <a target="_blank" href="#"> <img src="../imgs/linkedin.png" ></a>
-        <a target="_blank" href="https://github.com/naji-albatayneh"> <img src="../imgs/github.png" ></a>
-       
-    </div>
-</div>
+</section>
 </main>
+<footer>
+    <%- include('../layout/footer') %>
+</footer>
 
 </body>

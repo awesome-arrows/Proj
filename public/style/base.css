@@ -1,10 +1,26 @@
 *{box-sizing: border-box;}
 
 
- .bannar {width: 100%;
-height:450px;}
+.flex-container {
+  display: flex;
+  background-color: #c9e0e7;
+  flex-direction: row;
+ 
+}
+.container{
+  width: 80%;
+  position:absolute;
+  right: 0%;
+}
 
-main{background-color: #c9e0e7;}
+ .bannar {
+   padding-top: 0%;
+  width: 100%;
+height:400px;}
+
+
+
+
 .intro p { 
 text-emphasis: center;
     /* text-indent: 20px; */
@@ -26,7 +42,7 @@ font-size: x-large;
 
 /* Style inputs, select elements and textareas */
 
-input, select {
+.home-input, select {
     width: 90%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -42,7 +58,7 @@ input, select {
   
   /* Style the submit button */
 
-   input[type=submit] {
+  .home-input[type=submit] {
     background-color: #F2388F;
     color: white;
     /* padding: 12px 20px; */
@@ -56,7 +72,7 @@ input, select {
    
 
 
-  input[type=submit] {
+  .home-input[type=submit] {
     padding: 15px 25px;
     font-size: 24px;
     text-align: center;
@@ -65,9 +81,9 @@ input, select {
     border: none;
   }
   
-  input[type=submit]:hover {background-color: #f1e208}
+  .home-input[type=submit]:hover {background-color: #f1e208}
   
-  input[type=submit]:active {
+  .home-input[type=submit]:active {
     background-color: #819c06;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
@@ -82,16 +98,6 @@ input, select {
   }
   
 
-  /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-  /* @media screen and (max-width: 600px) {
-    .col-25, .col-75, input[type=submit] {
-      width: 100%;
-      margin-top: 0;
-    }
-  } */
-
-
-
    .footer {
         background-color: #F1F1F1;
         color:#1e14bf;
@@ -102,8 +108,32 @@ input, select {
         font-size: large;
         font-weight: 600;
       }
-/* .footer p {
-    color:#1e14bf;
-    margin-top: 1%;
-    text-shadow: #666;
-} */
+
+#header {
+  display: flex;
+   flex-direction: column;
+  justify-content: space-between;
+  background: #e709a5;
+  box-shadow: inset -0.25em 0 0.25em 0 rgba(219, 215, 215, 0.29);
+  color: #fff;
+  height: 100%;
+  left: 0;
+  overflow-y: auto;
+  position: fixed;
+  text-align: left;
+  top: 0;
+  width:20%;
+}
+
+  
+  #header .top {
+    flex-grow: 1;
+  }
+
+  /* #header .bottom {
+    -moz-flex-shrink: 0;
+    -webkit-flex-shrink: 0;
+    -ms-flex-shrink: 0;
+    flex-shrink: 0;
+    padding: 1.5em 0 0.75em 0;
+  } */

@@ -6,13 +6,12 @@
 </head>
 
 <body>
+  
+    <main  class="flex-container">
 
-    <header>
 
-        <%- include('../layout/header')%>
-    </header>
-    <main>
-    
+      <%- include('../layout/header')%>
+
         <section id="contact" class="container">
 
                 <img class="bannar" src="../imgs/bannar.jpg" alt="" >
@@ -28,10 +27,10 @@
                 <form method="post" action="/quiz">
                     <div class="row">
                         <div class="">
-                            <input type="text" name="name" placeholder="Name" />
+                            <input class="home-input" type="text" name="name" placeholder="Name" />
                         </div>
                         <div class="">
-                            <select name="difficulty">
+                            <select class="home-input" name="difficulty">
                                 <option > choose difficulty ...</option>
                                 <option id="s1" value="easy">Easy</option>
                                 <option id="s2" value="medium">Medium</option>
@@ -40,14 +39,15 @@
                         </div>
 
                         <div class="button">
-                            <input type="submit" value="Start" />
+                            <input class="home-input" type="submit" value="Start" />
                         </div>
                     </div>
                 </form>
 
-            </div>
+            </div> 
+             <%- include('../layout/footer') %>
         </section>
-        <%- include('../layout/footer') %>
+      
     </main>
 </body>
 
