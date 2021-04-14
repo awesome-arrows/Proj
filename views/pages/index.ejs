@@ -13,17 +13,13 @@
       <%- include('../layout/header')%>
 
         <section id="contact" class="container">
-
                 <img class="bannar" src="../imgs/bannar.jpg" alt="" >
-
            <div class="intro">
                <p> At your break time, leisure time or even at stressful time, what do you think of some useful entertainment?<br>
                 We are here to introduce it to you! All you have to do is define your test level and answer some questions<br> that activate the memory of your information, then you will get your result.<br>
                   So let's get started </p>
                 </div> 
             <div class="form">
-
-
                 <form method="post" action="/quiz">
                     <div class="row">
                         <div class="">
@@ -39,7 +35,7 @@
                         </div>
 
                         <div class="button">
-                            <input class="home-input" type="submit" value="Start" />
+                            <input class="home-input" type="submit" onclick="startQuiz()" value="Start" />
                         </div>
                     </div>
                 </form>
