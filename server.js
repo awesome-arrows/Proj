@@ -40,15 +40,14 @@ const PORT = process.env.PORT || 3005;
 
 const DATABASE_URL = process.env.DATABASE_URL;
 
-// const client = new pg.Client(DATABASE_URL);
-const options = NODE_ENV === 'production' ? {
-    connectionString: DATABASE_URL
-    , ssl: { rejectUnauthorized: false }
-} : {
-    connectionString: DATABASE_URL
-};
+const client = new pg.Client(DATABASE_URL);
+// const options = NODE_ENV === 'production' ? {
+//     connectionString: DATABASE_URL
+//     , ssl: { rejectUnauthorized: false }
+// } : {
+//     connectionString: DATABASE_URL
+// };
 
-const client = new pg.Client(options);
 //#endregion
 
 
@@ -161,11 +160,10 @@ function handleQuiz(req, res) {
             res.redirect('/quiz').catch(error => handleError(error, res));
         } else {
             // const sql = `SELECT difficulty_id FROM quiz_Result WHERE User_id = ${result.rows[0].id} ;`;
-            res.redirect('/quiz')
-                .catch(error => handleError(error, res));
-
+            res.redirect('/quiz');
         }
-    });
+    })
+        .catch(error => handleError(error, res));
 }
 
 function handleStart(req, res) {
