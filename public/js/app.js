@@ -1,22 +1,16 @@
 'use strict';
 
-
-let counter = 0;
-let correct_answer = $('input[name="answer"]').val();
-
 $(document).ready(() => {
-    // $('.quiz_quistions').show();
+    let counter = 0;
+    let correct_answer = $('input[name="answer"]').val();
     $(`.quiz_questions[data-number=0]`).show();
-
     $('.hiden-correct').hide();
     $('.questions').on('click', function (event){
-        console.log(correct_answer);
-        console.log($(this).val());
         if($(this).val() === correct_answer){
-            $(this).addClass('correct');
-            counter ++;
-        } else {
             $(this).addClass('wrong');
+        } else {
+            counter += 1;
+            $(this).addClass('answer');
         }
         $('.next_question').show();
     });
