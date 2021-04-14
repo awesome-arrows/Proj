@@ -1,5 +1,9 @@
 *{box-sizing: border-box;}
 
+main{
+  margin-left: 20%;
+}
+
 
 .flex-container {
   display: flex;
@@ -133,20 +137,26 @@ font-size: x-large;
   top: 0;
   width:20%;
 }
+.div-logo{
+  position: relative;
+}
+
 .title {
   display:inline-block;
   font-weight:800;
   font-size:xx-large;
   padding-top: 30px;
+  /* margin-right: 10%; */
   /* margin-left:3%; */
   padding-left: 10px;
-  float:left;
-  
+  /* float: right; */
+  position: absolute;
+  left: 35%;
 } 
  .img-logo {
   width: 120px;
   height: 90px;
-  /* float: right; */
+  float: left;
   padding-top: 10px;
   } 
 

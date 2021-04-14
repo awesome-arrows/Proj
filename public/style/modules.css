@@ -6,7 +6,7 @@
 .imge{
     width: 55%;
     border-radius: 100%;
-    box-shadow: -7px 6px #506c8654;
+    box-shadow: 0px 0px 15px #080808c4;
     left: 100px;
     transition: transform .2s; /* Animation */
 
@@ -26,8 +26,10 @@
 .block{
     text-align: center;
     width: 25%;
-    background-color: #cbfcf4;
-    box-shadow: -8px 6px #7ebdee9d;
+    background-color: #5fe2e67a;
+    /* box-shadow: 0px 0px 15px #7ebdee9d; */
+
+    box-shadow: -8px 6px #2f939775;
     border-radius: 35%;
     margin: 2%;
     padding-top: 3%;
@@ -50,6 +52,9 @@
     text-align: center;
     margin-top: 3%;
 }
+ .thanks{
+     text-align: center;
+ }
 
 .shifting {
     padding-top: 30px;
