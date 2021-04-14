@@ -1,11 +1,13 @@
-<div class="container quiz_quistions">
-    <h3 id="question"></h3>
+<div class="con quiz_questions" data-number="<%= index %>">
+    <h3 id="question"><%- choice.question %></h3>
     <div class="shifting text-center">
         <div class="list">
-            <div class="questions" id="q1"></div>
-            <div class="questions" id="q2"></div>
-            <div class="questions" id="q3"></div>
-            <div class="questions" id="q4"></div>
+            <input type="radio" class="questions" name="<%= index %>" value="<%- choice.full_arr[0] %>"><%- choice.full_arr[0] %></input>
+            <input type="radio" class="questions" name="<%= index %>" value="<%- choice.full_arr[1] %>"><%- choice.full_arr[1] %></input>
+            <input type="radio" class="questions" name="<%= index %>" value="<%- choice.full_arr[2] %>"><%- choice.full_arr[2] %></input>
+            <input type="radio" class="questions" name="<%= index %>" value="<%- choice.full_arr[3] %>"><%- choice.full_arr[3] %></input>
+            <button class="btn next_question" data-number="<%= index %>" data-max="<%= length %>">Next</button>
+            <input type="hidden" class="hiden-correct" name="answer" value="<%- choice.correct_answer %>"/>
         </div>
     </div>
     <a href="/result"></a>

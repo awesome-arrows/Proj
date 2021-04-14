@@ -26,8 +26,8 @@
 .block{
     text-align: center;
     width: 25%;
-    background-color: rgb(203, 252, 244);
-    box-shadow: -8px 6px #4cb19b54;
+    background-color: #cbfcf4;
+    box-shadow: -8px 6px #7ebdee9d;
     border-radius: 35%;
     margin: 2%;
     padding-top: 3%;
@@ -65,8 +65,19 @@ h1{
 }
 
 #question {
-    margin-bottom: 30px;
-    
+    margin-top: 50px;
+    margin-left: 50px;
+    font-size: 30px;
+    font-weight: bold;
+}
+.quiz_questions{
+    display: none;
+}
+.next_question{
+    display: none;
+}
+.result{
+    display: none;
 }
 
 #submit {
@@ -103,7 +114,7 @@ h1{
 }
 
 
-.quiz_quistions{
+/* .quiz_quistions{
     display: none;
-}
+} */
 
