@@ -15,10 +15,11 @@
               Time <span id="timer">0</span>
             </div>
       </div>
-
-                <%- include('./partials/question', {choice: data} ) %>
-
-        <%- include('./partials/result' ) %>
+            <% data.forEach( (choice, index) => { %>
+                <%- include('./partials/question', {choice : choice, index, length : data.length} ) %>
+            <% }); %>
+            
+        <%- include('./partials/result') %>
     </main>
     <footer>
         <%- include('../layout/footer') %>

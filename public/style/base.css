@@ -7,6 +7,14 @@
   flex-direction: row;
  
 }
+
+.con{
+  width: 80%;
+  right: 0%;
+  margin-left: 20%;
+  background-color: #f1f1f1;
+}
+
 .container{
   width: 80%;
   position:absolute;

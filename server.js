@@ -1,6 +1,6 @@
 'use stirct';
 
-//#region  Dependencies
+//  Dependencies
 
 require('dotenv').config();
 
@@ -14,12 +14,10 @@ const superagent = require('superagent');
 
 const override = require('method-override');
 
-const { render } = require('ejs');
-
-//#endregion
+// const { render } = require('ejs');
 
 
-//#region Variables Area
+// Variables Area
 
 let diff_string;
 
@@ -29,10 +27,8 @@ const Q_number = 5;
 
 //let Q_counter = 0;
 
-//#endregion
 
-
-//#region  Setup
+//  Setup
 
 let app = express();
 
@@ -40,7 +36,8 @@ const PORT = process.env.PORT || 3005;
 
 const DATABASE_URL = process.env.DATABASE_URL;
 
-// const client = new pg.Client(DATABASE_URL);
+const NODE_ENV =  process.env.NODE_ENV;
+
 const options = NODE_ENV === 'production' ? {
     connectionString: DATABASE_URL
     , ssl: { rejectUnauthorized: false }
@@ -49,10 +46,8 @@ const options = NODE_ENV === 'production' ? {
 };
 
 const client = new pg.Client(options);
-//#endregion
 
-
-//#region Middlewares
+// Middlewares
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -64,10 +59,9 @@ app.use(cors());
 
 app.set('view engine', 'ejs');
 
-//#endregion
 
 
-//#region Routes
+// Routes
 
 // home Page Route
 app.get('/', renderHomePage);
@@ -96,10 +90,8 @@ app.get('/about', handleAbout);
 // Route not found
 app.get('*', handleError);
 
-//#endregion
 
-
-//#region client connection check
+// client connection check
 
 client.connect().then(() => {
     app.listen(PORT, () => {
@@ -110,10 +102,8 @@ client.connect().then(() => {
 
 client.on('error', error => console.error(error));
 
-//#endregion
 
-
-//#region Constructors Area
+//  Constructors Area
 
 function Question(data) {
     this.question = data.question;
@@ -124,10 +114,9 @@ function Question(data) {
     this.full_arr.push(this.correct_answer);
 }
 
-//#endregion
 
 
-//#region Functions/Handlers Area
+// Functions/Handlers Area
 function renderHomePage(req, res) {
     res.render('pages/index');
 }
@@ -161,11 +150,10 @@ function handleQuiz(req, res) {
             res.redirect('/quiz').catch(error => handleError(error, res));
         } else {
             // const sql = `SELECT difficulty_id FROM quiz_Result WHERE User_id = ${result.rows[0].id} ;`;
-            res.redirect('/quiz')
-                .catch(error => handleError(error, res));
-
+            res.redirect('/quiz');
         }
-    });
+    })
+        .catch(error => handleError(error, res));
 }
 
 function handleStart(req, res) {
@@ -197,13 +185,9 @@ function handleTopScores(req, res) {
         .catch((error) => handleError(error, res));
 }
 
-//#endregion
-
-
-//#region Error Handler
+// Error Handler
 
 function handleError(error, res) {
     res.send({ status: 404, message: `Sorry something went wrong => ${error}` });
 }
 
-//#endregion
