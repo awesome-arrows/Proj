@@ -19,11 +19,9 @@ const override = require('method-override');
 
 // Variables Area
 
-let diff_string;
-
 let diff_int;
 
-const Q_number = 5;
+const Q_AMOUNT = process.env.Q_AMOUNT || 5;
 
 //let Q_counter = 0;
 
@@ -127,7 +125,8 @@ function handleAbout(req, res) {
 
 function handleQuiz(req, res) {
     const userName = req.body.name;
-    diff_string = req.body.difficulty;
+    let diff_string = req.body.difficulty;
+    diff_int;
     if (diff_string === 'easy') {
         diff_int = 1;
     } else if (diff_string === 'medium') {
@@ -136,7 +135,6 @@ function handleQuiz(req, res) {
         diff_int = 3;
     }
     const sql = 'SELECT name FROM users WHERE name = $1 ;';
-    // const sql2 = 'SELECT name FROM users WHERE name = $1 ;';
     const values = [userName];
     client.query(sql, values).then(result => {
         if (result.rows.length === 0) {
@@ -147,17 +145,20 @@ function handleQuiz(req, res) {
                 const sql2 = 'INSERT INTO quiz_Result (User_id, difficulty_id, score, time) VALUES ($1, $2 , $3 ,$4)';
                 client.query(sql2, val);
             });
-            res.redirect('/quiz').catch(error => handleError(error, res));
+            res.redirect(`/quiz?difficulty=${diff_string}`).catch(error => handleError(error, res));
         } else {
             // const sql = `SELECT difficulty_id FROM quiz_Result WHERE User_id = ${result.rows[0].id} ;`;
-            res.redirect('/quiz');
+            res.redirect(`/quiz?difficulty=${diff_string}`)
+                .catch(error => handleError(error, res));
+
         }
     })
         .catch(error => handleError(error, res));
 }
 
 function handleStart(req, res) {
-    const url = `https://opentdb.com/api.php?amount=${Q_number}&category=9&difficulty=${diff_string}&type=multiple`;
+    const diff_string = req.query.difficulty;
+    const url = `https://opentdb.com/api.php?amount=${Q_AMOUNT}&category=9&difficulty=${diff_string}&type=multiple`;
     superagent.get(url)
         .then(quiz => {
             let arr = quiz.body.results.map(ques => new Question(ques));
@@ -170,14 +171,15 @@ function handleStart(req, res) {
 function handleResult(req, res) {
     // alter quiz_Result to save the new score and time.
     const update_sql = `UPDATE quiz_result 
-                SET score = 33, time = 122 
-                WHERE user_id = 20;`;
+                SET score = ${}, time = ${} 
+                WHERE user_id = ${};`;
 
-    const select_sql = `SELECT * FROM quiz_result WHERE `
+    const select_sql = `SELECT * FROM quiz_result WHERE `;
     res.render('pages/partials/result');
 }
 
 function handleTopScores(req, res) {
+
     const sql = `SELECT score, time, name, difficulty FROM users 
                 JOIN quiz_Result 
                 ON user_id = users.id  

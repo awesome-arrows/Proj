@@ -63,7 +63,7 @@ no.
 # User story:
 - *As a user,* I want a breif describtion about the application so I will take an idea about what I WILL my experience in the application .
 
--*As a user,* I want a navigation bar so that I can move between the pages .
+- *As a user,* I want a navigation bar so that I can move between the pages .
 
 - *As a user,* I want a simple, clean looking UI so that my application is easy to navigate.
 
@@ -73,16 +73,16 @@ no.
 
 - *As a user,* I want a screen which show  questions and list of answers so i can read the question and answer it .
 
--*As a user,* I want a next button which shown after answer the question ,so that I can move to next question or result   page .
+- *As a user,* I want a next button which shown after answer the question ,so that I can move to next question or result   page .
 
- -*as a user,* I want to have an indication so that I know my answer is correct
+- *As a user,* I want to have an indication so that I know my answer is correct
 
-- *As a user,*I want div to show my score  after finish the quiz so that  I Can see my result .
+- *As a user,* I want div to show my score  after finish the quiz so that  I Can see my result .
 
--*As a user,* I want a button to navigate to top-scores page ,so that I Can see the other player's results.
+- *As a user,* I want a button to navigate to top-scores page ,so that I Can see the other player's results.
 
 - *As a user,* I want table of results and names of ather players,so I can  see the top scores of other people who takes the quizzes.
--  *As a user,* I want a responsive layout ,so I can use this application on my mobile . 
+- *As a user,* I want a responsive layout ,so I can use this application on my mobile . 
 
 - **Stretch goal:**  As a user, I want to save my name and choose to the website so I can. 
 
