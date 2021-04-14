@@ -169,6 +169,11 @@ function handleStart(req, res) {
 
 function handleResult(req, res) {
     // alter quiz_Result to save the new score and time.
+    const update_sql = `UPDATE quiz_result 
+                SET score = 33, time = 122 
+                WHERE user_id = 20;`;
+
+    const select_sql = `SELECT * FROM quiz_result WHERE `
     res.render('pages/partials/result');
 }
 
