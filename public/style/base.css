@@ -15,7 +15,8 @@ main{
 .con{
   width: 80%;
   right: 0%;
-  margin-left: 20%;
+  margin-right: auto;
+  margin-left: auto;
   background-color: #f1f1f1;
 }
 

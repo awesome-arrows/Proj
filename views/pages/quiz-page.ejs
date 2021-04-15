@@ -1,19 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
     <%- include('../layout/head')%>
-</head>
 <body>
-    <header>
+    <section>
         <%- include('../layout/header')%>
-    </header>
     <main>
         <h1>General Knowledge Quiz</h1>
         <div class="quiz-container">
-            <div class="quiz-info">
-              Time <span id="timer">0</span>
-            </div>
       </div>
             <% data.forEach( (choice, index) => { %>
                 <%- include('./partials/question', {choice : choice, index, length : data.length} ) %>
@@ -21,9 +14,10 @@
             
         <%- include('./partials/result') %>
     </main>
-    <footer>
+    </section>
+    <section id="contact" class="container">
         <%- include('../layout/footer') %>
-    </footer>
+    </section>
 </body>
 
 </html>
