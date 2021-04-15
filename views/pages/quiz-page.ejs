@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../layout/head')%>
+<body>
+    <%- include('../layout/header')%>
+    <main>
+        <h1 class="quiz-h1">General Knowledge Quiz</h1>
+        <div class="quiz-container">
+            <% data.forEach( (choice, index) => { %>
+                <%- include('./partials/question', {choice : choice, index, length : data.length} ) %>
+            <% }); %>
+            <%- include('./partials/result') %>
+        </div>
+    </main>
+    <%- include('../layout/footer') %>
+</body>
+</html>

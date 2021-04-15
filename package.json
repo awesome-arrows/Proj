@@ -4,7 +4,8 @@
   "description": "# Dalia Abdelghani # Noor Alomari # Walaa Alomari # Abed alaziz Alsalahat # Naji A. Albatayneh",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -18,12 +19,11 @@
   },
   "homepage": "https://github.com/awesome-arrows/Proj#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "method-override": "^3.0.0",
-    "nodemon": "^2.0.7",
-    "npm": "^7.9.0",
     "pg": "^8.5.1",
     "superagent": "^6.1.0"
   }
