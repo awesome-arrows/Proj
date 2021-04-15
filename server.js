@@ -171,9 +171,9 @@ function handleUpdate(req,res){
 function handleTopScores(req, res) {
 
     const sql = `SELECT score, time, name, difficulty FROM users 
-                JOIN quiz_Result 
-                ON user_id = users.id  
-                JOIN quiz_Difficulty 
+                JOIN quiz_Result
+                ON user_id = users.id
+                JOIN quiz_Difficulty
                 ON difficulty_id = quiz_Difficulty.id  
                 WHERE quiz_Difficulty.id = ${diff_int}
                 ORDER BY score DESC;`;
