@@ -2,22 +2,16 @@
 <html lang="en">
     <%- include('../layout/head')%>
 <body>
-    <section>
-        <%- include('../layout/header')%>
+    <%- include('../layout/header')%>
     <main>
-        <h1>General Knowledge Quiz</h1>
+        <h1 class="quiz-h1">General Knowledge Quiz</h1>
         <div class="quiz-container">
-      </div>
             <% data.forEach( (choice, index) => { %>
                 <%- include('./partials/question', {choice : choice, index, length : data.length} ) %>
             <% }); %>
-            
-        <%- include('./partials/result') %>
+            <%- include('./partials/result') %>
+        </div>
     </main>
-    </section>
-    <!-- <section id="contact" class="container"> -->
     <%- include('../layout/footer') %>
-    <!-- </section> -->
 </body>
-
 </html>

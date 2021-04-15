@@ -10,22 +10,22 @@
     background-color: #934caf;
     color: white;
     padding: 10px;
-  }
-.table td{
-padding: 10px;
 }
+
+.table td{
+    padding: 10px;
+}
+
 tr:nth-child(even) {background-color: #f2f2f2;}
 tr:hover{
     background-color: #934caf5d;
 }
 
 .diff{
-    /* display: inline-block; */
     position: relative;
     top: 100px;
     font-size: 30px;
     text-align: center;
-
 }
 
 .diff>span{

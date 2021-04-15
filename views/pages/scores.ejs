@@ -1,40 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('../layout/head')%>
-
-    <body>
-        <%- include('../layout/header')%>
-            <main>
-                <section>
-
-                    <h2 class="diff">Difficulty: <span>
-                            <%= scores[0].difficulty %>
-                        </span></h2>
-                    <table class="table">
-                        <tr>
-                            <th>Name</th>
-                            <th>Score</th>
-                            <th>Time</th>
-                        </tr>
-                        <% scores.forEach(score=> {%>
-                            <tr>
-                                <td>
-                                    <%= score.name %>
-                                </td>
-                                <td>
-                                    <%= score.score %>
-                                </td>
-                                <td>
-                                    <%= score.time %>
-                                </td>
-                            </tr>
-                            <%})%>
-                    </table>
-                </section>
-            </main>
-            <!-- <section id="contact" class="container"> -->
-    
-            <!-- </section> -->
-    </body>
-
+<body>
+    <%- include('../layout/header')%>
+    <main>
+        <h2 class="diff">Difficulty: <span>
+                <%= scores[0].difficulty %>
+            </span></h2>
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Score</th>
+                <th>Time</th>
+            </tr>
+            <% scores.forEach(score=> {%>
+                <tr>
+                    <td><%= score.name %></td>
+                    <td><%= score.score %></td>
+                    <td><%= score.time %></td>
+                </tr>
+            <%})%>
+        </table>
+    </main>
+    <%- include('../layout/footer') %>
+</body>
 </html>

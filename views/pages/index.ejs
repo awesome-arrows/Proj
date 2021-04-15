@@ -2,12 +2,8 @@
 <html lang="en">
     <%- include('../layout/head')%>
 <body>
-  
     <main  class="flex-container">
-
-
       <%- include('../layout/header')%>
-
         <section id="contact" class="container">
                 <img class="bannar" src="../imgs/bannar.jpg" alt="" >
            <div class="intro">
@@ -18,10 +14,10 @@
             <div class="form">
                 <form method="post" action="/quiz">
                     <div class="row">
-                        <div class="">
+                        <div class="name">
                             <input class="home-input" type="text" name="name" placeholder="Name" />
                         </div>
-                        <div class="">
+                        <div class="droplist">
                             <select class="home-input" name="difficulty">
                                 <option > choose difficulty ...</option>
                                 <option id="s1" value="easy">Easy</option>
@@ -29,18 +25,14 @@
                                 <option id="s3" value="hard">Hard</option>
                             </select>
                         </div>
-
                         <div class="button">
                             <input class="home-input" type="submit"  value="Start" />
                         </div>
                     </div>
                 </form>
-
             </div> 
-             <%- include('../layout/footer') %>
         </section>
-      
     </main>
+    <%- include('../layout/footer') %>
 </body>
-
 </html>

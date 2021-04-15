@@ -145,7 +145,6 @@ function handleStart(req, res) {
     superagent.get(url)
         .then(quiz => {
             let arr = quiz.body.results.map(ques => new Question(ques));
-            console.log(arr);
             res.render('pages/quiz-page', { data: arr });
         })
         .catch(error => handleError(error, res));
@@ -158,8 +157,6 @@ function handleResult(req, res) {
 function handleUpdate(req,res){
     const time = req.body.time;
     const score = parseInt(req.body.score);
-    console.log(req.body.time+'from hiddenform');
-    console.log(time,score);
     const update_sql = `UPDATE quiz_result 
                 SET score = $1, time = $2 
                 WHERE user_id = $3;`;
