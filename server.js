@@ -14,16 +14,13 @@ const superagent = require('superagent');
 
 const override = require('method-override');
 
-// const { render } = require('ejs');
-
 
 // Variables Area
 
 let diff_int;
 
 const Q_AMOUNT = process.env.Q_AMOUNT || 5;
-
-//let Q_counter = 0;
+let user_id;
 
 
 //  Setup
@@ -79,11 +76,8 @@ app.get('/scores', handleTopScores);
 // // about us Route
 app.get('/about', handleAbout);
 
-// // Update Route
-// app.put('//:', handleUpdate);
-
 // // Posting Update Route
-// app.post('//:', handleUpdate);
+app.post('/result', handleUpdate);
 
 // Route not found
 app.get('*', handleError);
@@ -134,26 +128,15 @@ function handleQuiz(req, res) {
     } else if (diff_string === 'hard') {
         diff_int = 3;
     }
-    const sql = 'SELECT name FROM users WHERE name = $1 ;';
     const values = [userName];
-    client.query(sql, values).then(result => {
-        if (result.rows.length === 0) {
-            const insertName = 'INSERT INTO users (name) VALUES($1) RETURNING id;';
-            client.query(insertName, values).then(results => {
-                // console.log('my id'+results.rows[0].id);
-                const val = [results.rows[0].id, diff_int, 0, 0];
-                const sql2 = 'INSERT INTO quiz_Result (User_id, difficulty_id, score, time) VALUES ($1, $2 , $3 ,$4)';
-                client.query(sql2, val);
-            });
-            res.redirect(`/quiz?difficulty=${diff_string}`).catch(error => handleError(error, res));
-        } else {
-            // const sql = `SELECT difficulty_id FROM quiz_Result WHERE User_id = ${result.rows[0].id} ;`;
-            res.redirect(`/quiz?difficulty=${diff_string}`)
-                .catch(error => handleError(error, res));
-
-        }
-    })
-        .catch(error => handleError(error, res));
+    const insertName = 'INSERT INTO users (name) VALUES($1) RETURNING id;';
+    client.query(insertName, values).then(results => {
+        user_id=results.rows[0].id;
+        const val = [results.rows[0].id, diff_int, 0, 0];
+        const sql2 = 'INSERT INTO quiz_Result (User_id, difficulty_id, score, time) VALUES ($1, $2 , $3 ,$4)';
+        client.query(sql2, val);
+    });
+    res.redirect(`/quiz?difficulty=${diff_string}`).catch(error => handleError(error, res));
 }
 
 function handleStart(req, res) {
@@ -169,15 +152,22 @@ function handleStart(req, res) {
 }
 
 function handleResult(req, res) {
-    // alter quiz_Result to save the new score and time.
-    const update_sql = `UPDATE quiz_result 
-                SET score = ${}, time = ${} 
-                WHERE user_id = ${};`;
-
-    const select_sql = `SELECT * FROM quiz_result WHERE `;
-    res.render('pages/partials/result');
+    res.redirect(`/`);
 }
 
+function handleUpdate(req,res){
+    const time = req.body.time;
+    const score = parseInt(req.body.score);
+    console.log(req.body.time+'from hiddenform');
+    console.log(time,score);
+    const update_sql = `UPDATE quiz_result 
+                SET score = $1, time = $2 
+                WHERE user_id = $3;`;
+    const val = [score,time,user_id];
+    client.query(update_sql,val);
+    res.redirect('/scores')
+        .catch(error => handleError(error, res));
+}
 function handleTopScores(req, res) {
 
     const sql = `SELECT score, time, name, difficulty FROM users 
