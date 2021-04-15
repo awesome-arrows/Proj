@@ -150,7 +150,6 @@ function handleQuiz(req, res) {
             // const sql = `SELECT difficulty_id FROM quiz_Result WHERE User_id = ${result.rows[0].id} ;`;
             res.redirect(`/quiz?difficulty=${diff_string}`)
                 .catch(error => handleError(error, res));
-
         }
     })
         .catch(error => handleError(error, res));
@@ -170,20 +169,19 @@ function handleStart(req, res) {
 
 function handleResult(req, res) {
     // alter quiz_Result to save the new score and time.
-    const update_sql = `UPDATE quiz_result 
-                SET score = ${}, time = ${} 
-                WHERE user_id = ${};`;
-
-    const select_sql = `SELECT * FROM quiz_result WHERE `;
+    // const update_sql = `UPDATE quiz_result
+    //             SET score = ${}, time = ${}
+    //             WHERE user_id = ${};`;
+    // const select_sql = `SELECT * FROM quiz_result WHERE `;
     res.render('pages/partials/result');
 }
 
 function handleTopScores(req, res) {
 
     const sql = `SELECT score, time, name, difficulty FROM users 
-                JOIN quiz_Result 
-                ON user_id = users.id  
-                JOIN quiz_Difficulty 
+                JOIN quiz_Result
+                ON user_id = users.id
+                JOIN quiz_Difficulty
                 ON difficulty_id = quiz_Difficulty.id  
                 WHERE quiz_Difficulty.id = ${diff_int}
                 ORDER BY score DESC;`;

@@ -2,14 +2,14 @@
 
 $(document).ready(() => {
     let counter = 0;
-    let correct_answer = $('input[name="answer"]').val();
     $(`.quiz_questions[data-number=0]`).show();
     $('.hiden-correct').hide();
     $('.questions').on('click', function (event){
+        let correct_answer = $('input[name="answer"]').val();
         if($(this).val() === correct_answer){
             $(this).addClass('wrong');
-        } else {
             counter += 1;
+        } else {
             $(this).addClass('answer');
         }
         $('.next_question').show();
