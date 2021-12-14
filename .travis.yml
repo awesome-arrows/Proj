@@ -1,0 +1,19 @@
+language: node_js
+node_js: 
+  - 0.4
+  - 0.5
+  - 0.6
+  - 0.7
+  - 0.8
+  - 0.9
+
+before_install:
+  - echo "installing Dep's"
+  - npm install
+  - echo "start running"
+
+
+scripts: 
+  - echo "processing ..."
+  
+  
